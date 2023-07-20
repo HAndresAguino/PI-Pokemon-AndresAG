@@ -1,0 +1,50 @@
+/* PokemonCreated.module.css */
+
+.pokemon-form {
+  
+  width: auto;
+  padding: 16px;
+  border-radius: 10px;
+  margin: auto;
+  background-color: rgba(79, 126, 255, 0.226);
+}
+
+.pokemon-form label {
+color: yellow;
+  width: 150px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.pokemon-form input{
+  width: 300px;
+  padding: 3px 10px;
+  border: 2px solid #f6f6f6;
+  border-radius: 3px;
+  background-color: #f6f6f6;
+  margin: 8px 0;
+  display: inline-block;
+}
+
+.pokemon-form button{
+  width: 100%;
+  padding: 8px 16px;
+  margin-top: 32px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  display: block;
+  color: #fff;
+  background-color: #214aff53;
+}
+
+
+.button{
+    width: 100%;
+  padding: 8px 16px;
+  margin-top: 32px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  display: block;
+  color: #fff;
+  background-color:  #214aff53;
+}

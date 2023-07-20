@@ -1,0 +1,15 @@
+.button{
+    padding: 5px;
+    width: 20em;
+    border-radius: 3em;
+    border: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    box-shadow: 0px 2px 9px black;
+    outline: rgb(255, 255, 255);
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(216, 19, 38, 0.882);
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
