@@ -7,7 +7,6 @@ const {postPokemon} = require('../controllers/pokemonsControllers')
 const getPokemonHandler = async (req, res) => {
   const { name } = req.query;
   
- 
   try {
     if (name) {
       const response = await getPokemonByName(name);

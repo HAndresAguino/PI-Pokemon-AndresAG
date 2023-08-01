@@ -8,7 +8,7 @@ const Card = ({name,types, img, id}) => {
 
     return (
 <div className={style.container}>
-    <h5>Este es un card:</h5>
+   
     <Link to = {`/detail/${id}`}>
     <h1> {name}</h1>
     </Link>

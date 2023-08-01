@@ -17,4 +17,9 @@
     text-decoration: none;
   }
 
-  
+
+  /* Estilo para el botón seleccionado */
+.toggle-button.selected {
+  background-color: #3498db;
+  color: #fff;
+}

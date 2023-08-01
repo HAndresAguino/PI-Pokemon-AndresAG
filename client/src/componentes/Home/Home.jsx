@@ -32,7 +32,7 @@ const Home = () => {
     const [paginaActual, setPaginaActual] = useState(1)
     const [personajesPorPg, setPersonajesPorPg] = useState(12)
 
-    const indiceUltimoPersonaje = paginaActual * personajesPorPg
+    const indiceUltimoPersonaje = paginaActual * personajesPorPg //12
     const indicePrimerPersonaje = indiceUltimoPersonaje - personajesPorPg
 
     const allPokemons = useSelector((state) => state.allPokemons)
@@ -40,12 +40,9 @@ const Home = () => {
     const personajesActuales = allPokemons.slice(indicePrimerPersonaje, indiceUltimoPersonaje) //El slice corta y divide un arreglo y toma una porción dependiendo lo que se pase por parametro
 
     function paginado(numeroDePagina) {
-
         setPaginaActual(numeroDePagina)
     }
     //________________________________________________________________________________________________________________________________________________________________________________________________________________
-
-        //Función manejadora para volver a traer personajes 
 
         function handleclick(event) {
             event.preventDefault();

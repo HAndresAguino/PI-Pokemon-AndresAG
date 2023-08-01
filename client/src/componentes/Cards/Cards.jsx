@@ -1,12 +1,4 @@
-//Este componente despacha una acción. Por lo tanto
 
-//Me tengo que traer a dispatch para que despache la accion 
-
-//A useEffect para que controle los ciclos de vida
-
-//Para traer información del estado global useSelector
-
-//Se necesita despachar la acción cuando el componente se monte
 
 
 import { useDispatch } from "react-redux"  //useSelector se usa en componentes smart 
@@ -19,15 +11,14 @@ import Card from "../Card/Card"
 
 
 import style from '../Cards/Cards.module.css'
+import Loader from "../Loader/Loader"
 
-
-
-
-
-
+import { useSelector } from "react-redux"
 
 
 const Cards = ({personajesActuales}) => {
+
+const loading = useSelector(state=> state.loading)
 
     const dispatch = useDispatch()
     // const allPokemons = useSelector((state) => state.allPokemons)
@@ -39,6 +30,7 @@ const Cards = ({personajesActuales}) => {
 
 
 
+    {loading && <Loader/>}
     return (
         <div className={style.character}>
             {

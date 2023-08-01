@@ -13,8 +13,7 @@ import style from './PokemonCreated.module.css'
 // import validacion from "./Validation"
 
 
-const PokemonCreated = () => { //!HASTA ACA SIRVE POR SI RETROCEDES
-
+const PokemonCreated = () => {
 
     //1 ______________
     const dispatch = useDispatch()
@@ -50,12 +49,14 @@ const PokemonCreated = () => { //!HASTA ACA SIRVE POR SI RETROCEDES
     //     types: [],
     // })
 
-
+    const [selectedType, setSelectedType] = useState([]);
+    // const [h5type, setH5Type] = useState([]); //Acá guardaremos y mostraremos los types seleccionados en el h5
 
     // 3 
     useEffect(() => {
         dispatch(getTypes())
     }, [dispatch])
+
 
 
     const handleChange = (event) => {
@@ -92,10 +93,9 @@ const PokemonCreated = () => { //!HASTA ACA SIRVE POR SI RETROCEDES
             return;
         }
 
-
-
-
-
+        if (name ===  'name'  && (value.length >  20)){
+            alert ('El nombre debe de tener menos de 20 caracteres')
+        }
 
         setPokemonData({
             ...pokemondata,
@@ -104,40 +104,27 @@ const PokemonCreated = () => { //!HASTA ACA SIRVE POR SI RETROCEDES
     };
 
 
-
     //5
     function handleSelect(event) {
 
         const typeSelect = event.target.value;
+
         if (!pokemondata.types.includes(typeSelect)) {
 
             setPokemonData({
                 ...pokemondata,
                 types: [...pokemondata.types, typeSelect]
             })
+
+           
         }
     }
 
-    // function handleSelect(typeID) {
-    //     const update = pokemondata.types.includes(typeID)
-    //         ? pokemondata.types.filter((type) => type !== type)
-    //         : [...pokemondata.types, typeID]
-
-    //     setPokemonData((preInput) => ({
-    //         ...preInput,
-    //         types: update
-    //     })
-    //     )
-
-    // }
-    // ;
 
     function handleSubmit(event) {
         event.preventDefault();
 
         dispatch(postPokemon(pokemondata));
-
-
 
         if (
             !pokemondata.name ||
@@ -149,37 +136,46 @@ const PokemonCreated = () => { //!HASTA ACA SIRVE POR SI RETROCEDES
             !pokemondata.weight
         ) {
             alert("Faltan datos por rellenar");
+        } else {
+            setPokemonData({
+                name: "",
+                hp: "",
+                attack: "",
+                defense: "",
+                speed: "",
+                height: "",
+                weight: "",
+                types: [],
+                img: "",
+            });
+            alert("Pokemon Creado correctamente")
+            history.push("/home")
         }
+    }
 
+    function handleDelete(el){
         setPokemonData({
-            name: "",
-            hp: "",
-            attack: "",
-            defense: "",
-            speed: "",
-            height: "",
-            weight: "",
-            types: [],
-            img: "",
-        });
-        alert("Pokemon Creado correctamente")
-        history.push("/home")
-
+            ...pokemondata,
+            types: pokemondata.types.filter(typ => typ !== el)
+        })
     }
 
 
 
+      
+
     return (
-
-
+        
         <div>
-            <h1 style={{color: "yellow"}}>
-                ¡Crea tu pokemon!
+            <h1 style={{ color: "yellow" }}>
+                Crea tu propio pokemon
             </h1>
 
             <NavLink to='/home'>
                 <button className={style.button}> Volver </button>
             </NavLink>
+
+            <br />
 
             <form className={style["pokemon-form"]} onSubmit={(event) => handleSubmit(event)}>
                 <div>
@@ -238,7 +234,7 @@ const PokemonCreated = () => { //!HASTA ACA SIRVE POR SI RETROCEDES
                     {
                         types.map((type) => (
                             <option
-                                value={type.id}
+                                value={type.name}
                                 key={type.id}
                                 disabled={pokemondata.types && pokemondata.types.includes(type.name)}
                             >
@@ -247,19 +243,26 @@ const PokemonCreated = () => { //!HASTA ACA SIRVE POR SI RETROCEDES
                         ))
                     }
                 </select>
+              <br />
+                 <text>
 
-
-
+                    Tipos seleccionados:{" "}
+                 
+                    {
+                    pokemondata.types.map((el, index) => (
+                        <div>
+                            <span key={index}>{el}</span>
+                            <span onClick={()=> handleDelete(el)}> X </span>
+                        </div>
+                    ))
+                    }
+                </text> 
                 <br />
-                <br />
-
                 <button type="submit"> Crear personaje </button>
-
             </form>
         </div>
     )
 }
-
 
 
 export default PokemonCreated

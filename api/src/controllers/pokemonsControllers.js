@@ -27,8 +27,7 @@ const getApiInfo = async () => {
 
 // Buscar en la base de datos
 const getDBInfo = async () => {
-  console.log(getDBInfo);
-  console.log(getDBInfo.types);
+
   return await Pokemon.findAll({
     include: {
       model: Types,
@@ -74,6 +73,7 @@ const getPokemonByName = async (name) => {
   const pokemonname = pokemonsDB.find(pokemon => pokemon.name === normalizedQuery)
   if (pokemonname) {
     return pokemonname
+
   } else {
     const pokemonData = (await axios.get(`https://pokeapi.co/api/v2/pokemon/${normalizedQuery}`)).data;
     if (pokemonData) {
@@ -147,8 +147,6 @@ const getPokemonById = async (id) => {
 const postPokemon = async (Datospokemon) => {
   const { name, img, hp, attack, defense, speed, height, weight, types } = Datospokemon
 
- 
-
   const newPokemon = await Pokemon.create({
     name,
     img,
@@ -161,19 +159,20 @@ const postPokemon = async (Datospokemon) => {
   });
 
   const existType = await Types.findAll({ where: { name: types } })
-    console.log(existType.map((ele) => ele.id))
+   
     if (!existType) {
         throw new Error('no existe ese tipo');
-    }
-
+      }
+      console.log(existType.map((e)=> e.id));
+      
     // await newPokemon.addTypes(existType.map((ele) => ele.id))
 
-    types.map(async(type) => await newPokemon.addType(type))
+    // types.map(async(type) => await newPokemon.addType(type))
+
+    await newPokemon.addTypes (existType.map((e)=> e.id))
 
   return newPokemon;    //Hata acá retrocedes__________________
 };
-
-
 
 
 

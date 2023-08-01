@@ -13,15 +13,13 @@ function Paginado({ personajesPorPg, allPokemons, paginado, paginaActual }) {
       <ul>
         {paginaNumbers?.map((numeroDePagina) => (
           <li key={numeroDePagina} style = {{color: "white"}}>
-            <a onClick={() => paginado(numeroDePagina)}>{numeroDePagina}</a>
+            <button onClick={() => paginado(numeroDePagina)}>{numeroDePagina}</button>
           </li>
         ))}
       </ul>
     </nav>
   );
 }
-
-
 
 
 //Este componente renderiza los números de la pagina
